@@ -1,0 +1,39 @@
+<launch>
+
+  <arg name="load_robot_model" default="true" />
+ 
+  <arg name="debug" default="false"/>
+  <arg name="gui" default="true"/>
+  <arg name="paused" default="false" />
+  <arg name="headless" default="false"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find random_pointcloud_data_gen)/worlds/data.world"/> 
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="headless" value="$(arg headless)"/>
+  </include>
+
+  <group if="$(arg load_robot_model)">
+    <param name="robot_description"
+           command="$(find xacro)/xacro --inorder $(find random_pointcloud_data_gen)/urdf/lrmate200id7l_gazebo.xacro" />
+  </group>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+  </node>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
+
+  <!-- push robot_description to factory and spawn robot in gazebo -->
+  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" 
+        output="screen" respawn="false"
+        args="-urdf
+              -param robot_description
+              -model fanuc_lrmate200id7l
+              -x 0
+              -y 0
+              -z 0"  
+                 />
+
+</launch>
