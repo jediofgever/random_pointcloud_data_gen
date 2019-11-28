@@ -5,8 +5,8 @@ This packages uses a simulated depth camera under Gazebo simulator to produce re
 Custom objects can be imported in Gazebo world, 
 
 ## Prerequisites
-ROS kinetic
-Gazebo 9.0
+* ROS kinetic
+* Gazebo 9.0
 
 ## Installation && Usage
 >git clone https://github.com/jediofgever/random_pointcloud_data_gen.git

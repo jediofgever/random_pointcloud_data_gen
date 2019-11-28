@@ -69,7 +69,7 @@ add_dependencies(gen_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_
 add_library(random_push SHARED plugins/RandomMoveObject.cc)
 target_link_libraries(random_push ${GAZEBO_LIBRARIES} ${catkin_LIBRARIES})
 
-add_library(gt_pub SHARED plugins/SimulationPickandPlace.cc  ${SOURCES})
+add_library(gt_pub SHARED plugins/PublishGTObjectPose.cc  ${SOURCES})
 target_link_libraries(gt_pub ${GAZEBO_LIBRARIES} ${catkin_LIBRARIES}   )
 install(TARGETS gt_pub DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 add_dependencies(gt_pub ${PROJECT_NAME}_EXPORTED_TARGETS})

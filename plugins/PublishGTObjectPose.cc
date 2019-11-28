@@ -5,10 +5,10 @@
  * @modify date 2019-11-27 16:26:02
  * @desc [description]
  */
-#include "SimulationPickandPlace.hh"
+#include "PublishGTObjectPose.hh"
 
 using namespace gazebo;
-SimulationPickandPlace::SimulationPickandPlace()
+PublishGTObjectPose::PublishGTObjectPose()
 {
 
     nh_ = new ros::NodeHandle();
@@ -17,11 +17,11 @@ SimulationPickandPlace::SimulationPickandPlace()
     gtBBX_pub_ = nh_->advertise<jsk_recognition_msgs::BoundingBoxArray>("/gt_labels", 10);
 }
 
-SimulationPickandPlace::~SimulationPickandPlace()
+PublishGTObjectPose::~PublishGTObjectPose()
 {
 }
 
-void SimulationPickandPlace::Load(physics::WorldPtr _parent, sdf::ElementPtr /*_sdf*/)
+void PublishGTObjectPose::Load(physics::WorldPtr _parent, sdf::ElementPtr /*_sdf*/)
 {
     // Store the pointer to the model
     this->world = _parent;
@@ -29,10 +29,10 @@ void SimulationPickandPlace::Load(physics::WorldPtr _parent, sdf::ElementPtr /*_
     // Listen to the update event. This event is broadcast every
     // simulation iteration.
     this->updateConnection = event::Events::ConnectWorldUpdateBegin(
-        std::bind(&SimulationPickandPlace::OnUpdate, this));
+        std::bind(&PublishGTObjectPose::OnUpdate, this));
 }
 
-void SimulationPickandPlace::OnUpdate()
+void PublishGTObjectPose::OnUpdate()
 {
     geometry_msgs::PoseArray objects_tobe_picked_array;
 
@@ -107,7 +107,7 @@ void SimulationPickandPlace::OnUpdate()
 
         jsk_box_msg.pose.orientation = pose_in_camera_frame.orientation;
 
-        jsk_box_msg.dimensions.x = 0.1120;
+        jsk_box_msg.dimensions.x = 0.112;
         jsk_box_msg.dimensions.y = 0.112;
         jsk_box_msg.dimensions.z = 0.05;
         gt_box_array.boxes.push_back(jsk_box_msg);

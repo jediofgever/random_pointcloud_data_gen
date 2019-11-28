@@ -1,0 +1,26 @@
+write_dataset: true
+publish_segmented_pointcloud: true
+publish_corrected_pointcloud: true
+publish_segmented_pointcloud_from_pointnet: true
+publish_gt_labels: true
+save_ply_file_for_pointnet_inference: true
+pointcloud_dataset_base_path: "/home/atas/pcl_dataset/"
+image_data_base_path: "/home/atas/Desktop/data/"
+segmented_ply_filepath: "/home/atas/inference/latest_segmented.pcd"
+inference_ply_filepath: "/home/atas/inference/latest_raw.ply"
+camera_frame: "camera_link"
+pub_gt_label_box_array_topic_name: "/gt_labelbox_array"
+pub_segmented_cloud_from_dope_topic_name: "/segmented_cloud_from_dope_ros_frame_convention"
+pub_segmented_cloud_from_pointnet_topic_name: "/segmented_cloud_from_pointnet_ros_frame_convention"
+pub_corrected_cloud_topic_name: "/corrected_cloud_ros_frame_convention"
+sub_raw_cloud_topic_name: "/camera/depth/points"
+sub_gt_label_box_array_topic_name: "/gt_labels"
+sub_segmented_image_topic_name:  "/dope/segmented_points"
+
+
+ 
+
+ 
+
+
+ 

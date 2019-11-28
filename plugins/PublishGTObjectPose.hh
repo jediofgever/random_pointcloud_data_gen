@@ -24,7 +24,7 @@
 namespace gazebo
 {
 
-class SimulationPickandPlace : public WorldPlugin
+class PublishGTObjectPose : public WorldPlugin
 {
 
     // Pointer to the model
@@ -42,12 +42,12 @@ private:
     tf::TransformListener *listener_;
 
 public:
-    SimulationPickandPlace();
-    ~SimulationPickandPlace();
+    PublishGTObjectPose();
+    ~PublishGTObjectPose();
     void Load(physics::WorldPtr _parent, sdf::ElementPtr /*_sdf*/);
     void OnUpdate();
 };
 
 // Register this plugin with the simulator
-GZ_REGISTER_WORLD_PLUGIN(SimulationPickandPlace);
+GZ_REGISTER_WORLD_PLUGIN(PublishGTObjectPose);
 } // namespace gazebo
